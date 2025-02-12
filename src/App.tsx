@@ -99,7 +99,7 @@ function App() {
 
   useEffect(() => {
     calculateDailyTargets();
-  }, [weeklyGoal, days]);
+  }, [weeklyGoal]);
 
   const calculateDailyTargets = () => {
     const totalCoefficients = days.reduce((sum, day) => sum + day.coefficient, 0);
@@ -125,14 +125,16 @@ function App() {
       setShowSuccess(true);
     }
 
-    const remainingDays = newDays.slice(index + 1);
-    const totalRemainingCoefficients = remainingDays.reduce((sum, day) => sum + day.coefficient, 0);
-    
+    // Calculer les nouveaux objectifs pour les jours suivants
+    const totalRemainingCoefficients = newDays
+      .slice(index + 1)
+      .reduce((sum, day) => sum + day.coefficient, 0);
+
     if (totalRemainingCoefficients > 0) {
-      const newBaseTarget = remaining / totalRemainingCoefficients;
-      
+      const remainingBaseTarget = Math.max(0, remaining) / totalRemainingCoefficients;
+
       for (let i = index + 1; i < newDays.length; i++) {
-        newDays[i].target = Math.max(0, Math.round(newBaseTarget * newDays[i].coefficient));
+        newDays[i].target = Math.round(remainingBaseTarget * newDays[i].coefficient);
       }
     }
 
