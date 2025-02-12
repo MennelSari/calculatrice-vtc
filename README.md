@@ -23,10 +23,10 @@ Une application web moderne pour aider les chauffeurs VTC à gérer leurs object
 
 ```bash
 # Cloner le projet
-git clone https://github.com/votre-username/vtc-calculator.git
+git clone git@github.com:MennelSari/calculatrice-vtc.git
 
 # Accéder au répertoire
-cd vtc-calculator
+cd calculatrice-vtc
 
 # Installer les dépendances
 npm install

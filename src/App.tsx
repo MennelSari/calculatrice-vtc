@@ -185,7 +185,7 @@ function App() {
               fullWidth
               type="number"
               value={weeklyGoal || ''}
-              onChange={(e) => setWeeklyGoal(Number(e.target.value))}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setWeeklyGoal(Number(e.target.value))}
               variant="outlined"
               inputProps={{ min: 0 }}
               sx={{ 
@@ -286,7 +286,7 @@ function App() {
                       <TextField
                         type="number"
                         value={day.actual || ''}
-                        onChange={(e) => handleActualChange(index, Number(e.target.value))}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleActualChange(index, Number(e.target.value))}
                         variant="outlined"
                         size="small"
                         fullWidth
