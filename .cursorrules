@@ -1,0 +1,16 @@
+le site sert à aider la gestion de revenus pour les chauffeurs vtc.
+il permet principalement de calculer les objectifs de revenus à avoir par jour en fonction du nombre de jours travaillés.
+il est moderne et a un design simple et intuitif.
+il est responsive et fonctionne sur tous les appareils.
+il est fait avec react, tailwind css et typescript.
+il est optimisé pour les performances et la vitesse de chargement.
+il est optimisé pour l'accessibilité.
+il est optimisé pour le référencement naturel.
+Il a une UI/UX moderne et simple.
+ne me propose pas de commit, je veux faire le commit moi meme, sauf si je te le demande.
+ne me propose pas de push, je veux faire le push moi meme, sauf si je te le demande.
+ne me propose pas de pull request, je veux faire la pull request moi meme, sauf si je te le demande.
+ne me propose pas de merge, je veux faire le merge moi meme, sauf si je te le demande.
+ne me propose pas de deploy, je veux faire le deploy moi meme, sauf si je te le demande.
+ne me propose pas de rollback, je veux faire le rollback moi meme, sauf si je te le demande.
+vérifie toujours si on est dans le bon dossier avant de faire des installations ou des commandes.
