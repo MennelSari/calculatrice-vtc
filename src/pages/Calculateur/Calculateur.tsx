@@ -9,13 +9,30 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Calculateur: React.FC = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [weeklyGoal, setWeeklyGoal] = useState<number>(1000);
   const [isEditingGoal, setIsEditingGoal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [selectedWeek, setSelectedWeek] = useState<string>(getWeekNumber(new Date()));
+
+  // Vérification de l'authentification
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/login');
+    }
+  }, [authLoading, user, navigate]);
+
+  // Si l'authentification est en cours, afficher le chargement
+  if (authLoading) {
+    return <div className="container">Chargement de l'authentification...</div>;
+  }
+
+  // Si l'utilisateur n'est pas connecté, ne pas rendre le composant
+  if (!user) {
+    return null;
+  }
 
   // Initialisation des jours avec leurs coefficients par défaut
   const [days, setDays] = useState<Day[]>([
@@ -88,7 +105,10 @@ const Calculateur: React.FC = () => {
   // Modifie le useEffect existant pour charger l'objectif
   useEffect(() => {
     const loadWeekData = async () => {
-      if (!user) return;
+      if (!user) {
+        navigate('/login');
+        return;
+      }
 
       setLoading(true);
       
@@ -143,8 +163,6 @@ const Calculateur: React.FC = () => {
           }
         });
 
-        setDays(newDays);
-        
         // Recalcule les objectifs après avoir chargé les données
         const totalCoefficients = newDays.reduce((sum, day) => sum + day.coefficient, 0);
         const baseTarget = weeklyGoal / totalCoefficients;
@@ -155,16 +173,19 @@ const Calculateur: React.FC = () => {
         }));
 
         setDays(daysWithTargets);
+        console.log('Données chargées avec succès');
 
       } catch (error) {
         console.error('Erreur lors du chargement des données:', error);
+        setSuccessMessage('Erreur lors du chargement des données. Veuillez réessayer.');
+        setShowSuccess(true);
       } finally {
         setLoading(false);
       }
     };
 
     loadWeekData();
-  }, [user, selectedWeek]);
+  }, [user, selectedWeek, navigate]);
 
   const saveDailyData = async (dayIndex: number, day: Day) => {
     if (!user) return;

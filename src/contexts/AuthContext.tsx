@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { 
-  getAuth, 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
@@ -8,12 +7,8 @@ import {
   updateProfile,
   User
 } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { app } from '../config/Firebase';
-
-// Initialisation de Firebase Auth et Firestore
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../config/Firebase';
 
 // Type pour le contexte
 type AuthContextType = {
@@ -44,6 +39,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // Écouter les changements d'authentification
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('État de l\'authentification changé:', user);
       setUser(user);
       setLoading(false);
     });
@@ -71,33 +67,36 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         preferred_zone: userData.preferred_zone,
         years_of_experience: userData.years_of_experience,
         platforms: userData.platforms,
+        work_city: userData.work_city,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       });
 
       return userCredential;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur lors de l\'inscription:', error);
-      throw error;
+      throw new Error(error.message);
     }
   };
 
   const signIn = async (email: string, password: string) => {
     try {
+      console.log('Tentative de connexion avec:', email);
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log('Connexion réussie:', userCredential.user);
       return userCredential;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur lors de la connexion:', error);
-      throw error;
+      throw new Error(error.message);
     }
   };
 
   const signOut = async () => {
     try {
       await firebaseSignOut(auth);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur lors de la déconnexion:', error);
-      throw error;
+      throw new Error(error.message);
     }
   };
 

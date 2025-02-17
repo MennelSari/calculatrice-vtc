@@ -187,7 +187,7 @@ const Home: React.FC = () => {
         <div className="stat-card">
           <div className="stat-header">
             <CheckCircleIcon />
-            <span className="stat-label">Objectifs Atteints</span>
+            <span className="stat-label">Objectifs atteints cette semaine</span>
           </div>
           <div className="stat-value">
             {monthlyStats.targetReachedCount}/{monthlyStats.totalDays}
