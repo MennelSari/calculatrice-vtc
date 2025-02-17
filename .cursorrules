@@ -14,3 +14,6 @@ ne me propose pas de merge, je veux faire le merge moi meme, sauf si je te le de
 ne me propose pas de deploy, je veux faire le deploy moi meme, sauf si je te le demande.
 ne me propose pas de rollback, je veux faire le rollback moi meme, sauf si je te le demande.
 vérifie toujours si on est dans le bon dossier avant de faire des installations ou des commandes.
+le site doit etre responsive et fonctionner sur tous les appareils.
+propose toujours des solutions simples, efficace et faciles à maintenir, ne va pas chercher compliqué quand on peux faire simple.
+j'utilise firebase pour la base de données et l'authentification.

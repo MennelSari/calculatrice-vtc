@@ -1,120 +1,201 @@
+/* Configuration globale de la police et du rendu du texte */
 :root {
+  /* Définition de la famille de polices par ordre de préférence */
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Amélioration du rendu du texte pour différents navigateurs */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Style de base pour le corps de la page */
 body {
-  margin: 0;
-  min-height: 100vh;
+  margin: 0; /* Supprime les marges par défaut */
+  min-height: 100vh; /* Hauteur minimale de 100% de la hauteur de la fenêtre */
+  /* Création d'un dégradé conique pour l'arrière-plan */
   background: conic-gradient(at bottom right, #1d4ed8, #1e40af, #111827);
-  color: white;
+  color: white; /* Couleur du texte en blanc */
 }
 
+/* Conteneur principal qui centre et limite la largeur du contenu */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 1200px; /* Largeur maximale du contenu */
+  margin: 0 auto; /* Centre le conteneur horizontalement */
+  padding: 1rem; /* Espacement intérieur sur mobile */
 }
 
+/* Ajustement du padding pour les écrans de tablette et plus grands */
+@media (min-width: 640px) {
+  .container {
+    padding: 2rem; /* Plus d'espacement sur les grands écrans */
+  }
+}
+
+/* Style du titre principal */
 .title {
-  font-size: 3rem;
+  font-size: 2rem; /* Taille de police sur mobile */
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  /* Création d'un effet de dégradé sur le texte */
   background: linear-gradient(to right, white, #bfdbfe);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out; /* Animation d'apparition */
 }
 
+/* Ajustement du titre pour les grands écrans */
+@media (min-width: 640px) {
+  .title {
+    font-size: 3rem; /* Police plus grande */
+    margin-bottom: 2rem;
+  }
+}
+
+/* Style des cartes (conteneurs d'informations) */
 .card {
+  /* Fond semi-transparent avec effet de flou */
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
+  /* Ombre portée pour effet de profondeur */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* Transitions douces pour les animations */
   transition: transform 0.2s, background 0.3s;
 }
 
+/* Effet au survol des cartes */
 .card:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Léger effet de soulèvement */
 }
 
+/* Style pour les cartes désactivées */
 .card.disabled {
-  opacity: 0.5;
+  opacity: 0.5; /* Semi-transparent */
 }
 
+/* Section de l'objectif hebdomadaire */
 .weekly-goal {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  flex-direction: column; /* Empilé sur mobile */
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
+/* Réorganisation sur grands écrans */
+@media (min-width: 640px) {
+  .weekly-goal {
+    flex-direction: row; /* Côte à côte */
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Valeur de l'objectif */
 .goal-value {
-  font-size: 2rem;
+  font-size: 1.5rem; /* Taille sur mobile */
   font-weight: bold;
 }
 
+@media (min-width: 640px) {
+  .goal-value {
+    font-size: 2rem; /* Plus grand sur desktop */
+  }
+}
+
+/* En-tête des cartes journalières */
 .day-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; /* Empilé sur mobile */
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
+/* Réorganisation sur tablette et plus */
+@media (min-width: 480px) {
+  .day-header {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+/* Nom du jour */
 .day-name {
   font-size: 1.5rem;
   font-weight: 600;
 }
 
+/* Style du coefficient */
 .coefficient {
-  color: #93c5fd;
+  color: #93c5fd; /* Bleu clair */
   font-size: 0.9rem;
 }
 
+/* Groupe d'entrées (inputs et boutons) */
 .input-group {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  width: 100%; /* Pleine largeur sur mobile */
 }
 
+@media (min-width: 480px) {
+  .input-group {
+    width: auto; /* Largeur automatique sur grands écrans */
+  }
+}
+
+/* Zone d'objectif */
 .target {
-  text-align: right;
+  text-align: left; /* Aligné à gauche sur mobile */
 }
 
+@media (min-width: 480px) {
+  .target {
+    text-align: right; /* Aligné à droite sur grands écrans */
+  }
+}
+
+/* Étiquette de l'objectif */
 .target-label {
   color: #93c5fd;
   font-size: 0.9rem;
 }
 
+/* Valeur de l'objectif */
 .target-value {
   font-weight: 600;
 }
 
+/* Style des champs de saisie numériques */
 input[type="number"] {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5rem;
   padding: 0.5rem;
   color: white;
-  width: 120px;
+  width: 100%;
+  max-width: 120px;
   transition: border-color 0.3s;
 }
 
+/* État focus des champs de saisie */
 input[type="number"]:focus {
   outline: none;
   border-color: rgba(255, 255, 255, 0.5);
 }
 
+/* Champs désactivés */
 input[type="number"]:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+/* Barre de progression */
 .progress-bar {
   height: 4px;
   background: rgba(255, 255, 255, 0.1);
@@ -123,12 +204,14 @@ input[type="number"]:disabled {
   overflow: hidden;
 }
 
+/* Remplissage de la barre de progression */
 .progress-fill {
   height: 100%;
   background: linear-gradient(to right, #3b82f6, #60a5fa);
   transition: width 0.3s ease-out;
 }
 
+/* Message de succès */
 .success-message {
   background: rgba(59, 130, 246, 0.2);
   backdrop-filter: blur(5px);
@@ -139,6 +222,7 @@ input[type="number"]:disabled {
   animation: slideUp 0.3s ease-out;
 }
 
+/* Animation d'apparition progressive */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -150,6 +234,7 @@ input[type="number"]:disabled {
   }
 }
 
+/* Animation de glissement vers le haut */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -161,6 +246,7 @@ input[type="number"]:disabled {
   }
 }
 
+/* Style des boutons */
 button {
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -171,23 +257,34 @@ button {
   transition: background 0.3s;
 }
 
+/* Effet au survol des boutons */
 button:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* Grille des jours */
 .days-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr; /* Une colonne sur mobile */
   gap: 1rem;
   margin-top: 1rem;
 }
 
+/* Passage à 2 colonnes sur tablette */
+@media (min-width: 640px) {
+  .days-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Passage à 3 colonnes sur desktop */
 @media (min-width: 1024px) {
   .days-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Style spécifique pour les cartes de jours */
 .card.day-card {
   height: 100%;
   margin-bottom: 0;
@@ -195,12 +292,15 @@ button:hover {
   flex-direction: column;
 }
 
+/* Contrôles des coefficients */
 .coefficient-controls {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap; /* Permet le retour à la ligne si nécessaire */
 }
 
+/* Boutons de coefficient */
 .coefficient-button {
   width: 24px;
   height: 24px;
@@ -211,6 +311,7 @@ button:hover {
   padding: 0;
 }
 
+/* Suppression des flèches des inputs numériques */
 input[type="number"] {
   -moz-appearance: textfield;
 }
@@ -219,4 +320,148 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* Styles pour le header du calculateur */
+.calculateur-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-2px);
+}
+
+/* Styles pour le sélecteur de date */
+.date-selector {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.date-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: none;
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+.date-selector label {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.date-selector input[type="date"] {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.date-selector input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.date-selector input[type="date"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.selected-date {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .date-selector-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .save-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .date-selector input[type="date"] {
+    max-width: 100%;
+  }
+}
+
+.actual-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.clear-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: #ef4444;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: scale(1.1);
 }
